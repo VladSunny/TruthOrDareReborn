@@ -11,30 +11,6 @@ body {
   font-family: monospace; /* Моноширинный шрифт для эффекта печатания */
   white-space: nowrap; /* Текст не переносится на новую строку */
   overflow: hidden; /* Скрываем текст, который ещё не напечатан */
-  border-right: 2px solid black; /* Мигающий курсор */
-  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+  display: inline-block; /* Чтобы курсор был рядом с текстом */
 }
 
-.typing-animation::after {
-  content: '|';
-  animation: blink-caret 0.75s step-end infinite;
-}
-
-@keyframes typing {
-  from {
-    width: 0; /* Начинаем с нулевой ширины */
-  }
-  to {
-    width: 100%; /* Заканчиваем полной шириной текста */
-  }
-}
-
-@keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent; /* Курсор мигает */
-  }
-  50% {
-    border-color: black;
-  }
-}
