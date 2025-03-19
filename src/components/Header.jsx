@@ -4,12 +4,10 @@ import { Link } from 'react-router-dom';
 function Header() {
   return (
     <>
-      <div class="flex justify-center items-center w-full px-4">
-        <Link to="/">
-          <div class="card flex justify-center items-center w-5xl my-5">
-              <h1 class="text-center">Truth Or Dare</h1>
-          </div>
-        </Link>
+      <div className="fixed top-0 left-0 navbar bg-base-200 flex justify-center h-30">
+        <div>
+          <h1 className="font-bold text-primary text-4xl md:text-6xl xl:text-8xl">Truth Or Dare</h1>
+        </div>
       </div>
     </>
   )

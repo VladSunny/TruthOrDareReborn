@@ -1,22 +1,62 @@
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 
 function Home() {
+  const [currentCard, setCurrentCard] = useState("Choose")
+  const [currentTask, setCurrentTask] = useState("")
+
+  const truths = [
+    "How are you?",
+    "Where are you?",
+    "What are you doing?",
+    "What is your name?",
+    "What is your age?",
+    "Where are you from?",
+  ]
+
+  const dares = [
+    "Sing for a minute",
+    "Dance for a minute",
+    "Run for a minute",
+    "Jump for a minute",
+    "Climb a tree for a minute",
+    "Cry for a minute",
+  ]
+  
+  const updateTask = (nextCard) => {
+    if (nextCard === "Random") {
+      nextCard = Math.random() > 0.5 ? "Truth" : "Dare"
+    }
+
+    if (nextCard === "Truth") {
+      setCurrentCard("Truth")
+      setCurrentTask(truths[Math.floor(Math.random() * truths.length)])
+    } else if (nextCard === "Dare") {
+      setCurrentCard("Dare")
+      setCurrentTask(dares[Math.floor(Math.random() * dares.length)])
+    }
+  }
+
   return (
     <>
-      <div class="flex justify-center">
-        <div class="card bg-base-100 w-96 shadow-sm">
-          <figure>
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-              alt="Shoes" />
-          </figure>
-          <div class="card-body">
-            <h2 class="card-title">Card Title</h2>
-            <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-            <div class="card-actions justify-end">
-              <button class="btn btn-primary">Buy Now</button>
-            </div>
+      <div className="flex justify-center items-center h-dvh flex-col">
+        <div className="card bg-base-300 w-5/6 md:w-7/12 lg:w-2/7 h-1/2 shadow-2xl hover:shadow-3xl hover:shadow-primary transition-all duration-500">
+          <div className="card-body">
+            <h2 className="card-title">
+              <p className="text-center text-secondary">
+                { currentCard }
+              </p>
+            </h2>
+            
+            <p className="text-center">
+              { currentTask }
+            </p>
           </div>
+        </div>
+
+        <div className="flex card-actions justify-evenly pt-5">
+            <button className="btn btn-md lg:btn-lg btn-soft btn-primary" onClick={() => updateTask("Truth")}>Next Truth</button>
+            <button className="btn btn-md lg:btn-lg btn-soft btn-primary" onClick={() => updateTask("Random")}>Next Random</button>
+            <button className="btn btn-md lg:btn-lg btn-soft btn-primary" onClick={() => updateTask("Dare")}>Next Dare</button>
         </div>
       </div>
     </>
