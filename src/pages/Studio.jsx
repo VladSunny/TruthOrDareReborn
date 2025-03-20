@@ -10,12 +10,12 @@ function Studio() {
         </h1>
 
         <fieldset class="fieldset bg-base-200 border border-base-300 mt-20 p-4 rounded-box w-2/3 md:w-4/7 lg:w-3/7">
-          <legend class="fieldset-legend text-xl md:text-3xl">Your Idea</legend>
+          <legend class="fieldset-legend text-xl md:text-3xl text-primary">Your Idea</legend>
           
           <textarea class="textarea h-50 max-h-80 w-full md:text-2xl" placeholder="Bio"></textarea>
           
-          <span className="label text-xl md:text-2xl mt-5">Type</span>
-          <select className='text-xl outline-primary'>
+          <span className="label text-xl md:text-2xl mt-5 text-secondary">Type</span>
+          <select className='text-xl outline-primary text-secondary'>
             <option>Truth</option>
             <option>Dare</option>
           </select>
