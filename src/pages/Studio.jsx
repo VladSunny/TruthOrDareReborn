@@ -19,8 +19,11 @@ function Studio() {
             <option>Truth</option>
             <option>Dare</option>
           </select>
-
         </fieldset>
+
+        <button className='btn btn-lg btn-success w-1/3 lg:w-1/5 mt-10'>
+            Submit
+        </button>
       </div>
     </>
   );
