@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import supabase from '../supabase-client';
 
 function Home() {
   const [currentCard, setCurrentCard] = useState("Choose");
