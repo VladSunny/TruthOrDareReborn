@@ -55,7 +55,7 @@ function Home() {
   return (
     <>
       <div className="flex justify-center items-center h-dvh flex-col">
-        <div className="card bg-base-300 w-5/6 md:w-7/12 lg:w-2/7 h-1/2 shadow-2xl hover:shadow-primary transition-all duration-500">
+        <div className="card bg-base-300 w-5/6 md:w-7/12 lg:w-3/7 h-1/2 shadow-2xl hover:shadow-primary transition-all duration-500">
           <div className="card-body">
             <h2 className="card-title">
               <p className="text-center text-secondary text-3xl">
@@ -70,9 +70,9 @@ function Home() {
         </div>
 
         <div className="flex card-actions justify-evenly pt-10">
-          <button className="btn btn-md lg:btn-lg btn-soft btn-primary" onClick={() => updateTask("Truth")}>Next Truth</button>
-          <button className="btn btn-md lg:btn-lg btn-soft btn-primary" onClick={() => updateTask("Random")}>Next Random</button>
-          <button className="btn btn-md lg:btn-lg btn-soft btn-primary" onClick={() => updateTask("Dare")}>Next Dare</button>
+          <button className="btn btn-md md:btn-lg btn-soft btn-primary" onClick={() => updateTask("Truth")}>Next Truth</button>
+          <button className="btn btn-md md:btn-lg btn-soft btn-primary" onClick={() => updateTask("Random")}>Next Random</button>
+          <button className="btn btn-md md:btn-lg btn-soft btn-primary" onClick={() => updateTask("Dare")}>Next Dare</button>
         </div>
       </div>
     </>
