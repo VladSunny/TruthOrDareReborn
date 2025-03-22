@@ -71,8 +71,8 @@ function Home() {
 
         <div className="flex card-actions justify-evenly pt-10">
           <button className="btn btn-md md:btn-lg btn-soft btn-primary" onClick={() => updateTask("Truth")}>Next Truth</button>
-          <button className="btn btn-md md:btn-lg btn-soft btn-primary" onClick={() => updateTask("Random")}>Next Random</button>
-          <button className="btn btn-md md:btn-lg btn-soft btn-primary" onClick={() => updateTask("Dare")}>Next Dare</button>
+          <button className="btn btn-md md:btn-lg btn-soft btn-info" onClick={() => updateTask("Random")}>Next Random</button>
+          <button className="btn btn-md md:btn-lg btn-soft btn-secondary" onClick={() => updateTask("Dare")}>Next Dare</button>
         </div>
       </div>
     </>
