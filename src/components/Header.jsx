@@ -22,14 +22,21 @@ function Header() {
   console.log(session?.user)
 
   const signUp = async () => {
-    await supabase.auth.signInWithOAuth({
+    const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-    });
+      options: {
+          // redirectTo: "http://localhost:3000/**",
+          queryParams: {
+              access_type: 'offline',
+              prompt: 'consent',
+          },
+      },
+  })
   }
 
-  // const logOut = async () => {
-  //   await supabase.auth.signOut()
-  // }
+  const logOut = async () => {
+    await supabase.auth.signOut()
+  }
 
   // if (!session) {
   //   return (<Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />)
@@ -64,7 +71,7 @@ function Header() {
             )}
             {location.pathname !== "/" && (
               <Link to="/">
-                <button className="btn btn-lg md:btn-xl btn-primary">Home</button>
+                <button className="btn btn-lg md:btn-xl btn-primary" onClick={logOut}>Home</button>
               </Link>
             )}
           </div>
