@@ -27,6 +27,10 @@ function Header() {
     });
   }
 
+  // const logOut = async () => {
+  //   await supabase.auth.signOut()
+  // }
+
   // if (!session) {
   //   return (<Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />)
   // }
