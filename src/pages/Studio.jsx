@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import supabase from '../supabase-client';
 
 function Studio() {
@@ -6,6 +6,7 @@ function Studio() {
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [ideaText, setIdeaText] = useState('');
   const [selectedOption, setSelectedOption] = useState('truth');
+  const [session, setSession] = useState(null)
 
   const handleSubmit = async () => {
     const idea = {
@@ -40,6 +41,19 @@ function Studio() {
     }, 3000);
   };
 
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [])
+
   return (
     <>
       <div className="flex items-center h-dvh flex-col">
@@ -48,6 +62,10 @@ function Studio() {
         </h1>
 
         <div className="flex flex-col items-center justify-around absolute top-40 md:top-75 w-screen">
+          {session && (
+            <img src={session.user.user_metadata.avatar_url} alt="Avatar" className="rounded-full w-20 h-20 md:w-30 md:h-30" />
+          )}
+
           <fieldset className="fieldset bg-base-200 border border-base-300 p-4 rounded-box w-3/4 shadow-2xl hover:shadow-secondary transition-all duration-500 md:w-4/7 lg:w-3/7">
             <legend className="fieldset-legend text-xl md:text-3xl text-primary">Your Idea</legend>
             
