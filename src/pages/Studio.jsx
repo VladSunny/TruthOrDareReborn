@@ -33,7 +33,7 @@ function Studio() {
         </h1>
 
         <div className='flex flex-col items-center justify-around absolute top-40 md:top-75 w-screen'>
-          <fieldset className="fieldset bg-base-200 border border-base-300 p-4 rounded-box w-3/4 md:w-4/7 lg:w-3/7">
+          <fieldset className="fieldset bg-base-200 border border-base-300 p-4 rounded-box w-3/4 shadow-2xl hover:shadow-secondary transition-all duration-500 md:w-4/7 lg:w-3/7">
             <legend className="fieldset-legend text-xl md:text-3xl text-primary">Your Idea</legend>
             
             <textarea 
@@ -69,7 +69,7 @@ function Studio() {
           </fieldset>
 
           <button 
-            className='btn btn-lg btn-success w-1/3 lg:w-1/5 mt-10' 
+            className='btn btn-lg btn-success w-1/3 lg:w-1/5 mt-10 hover:btn-xl transition-all duration-500 subpixel-antialiased' 
             onClick={handleSubmit}
           >
             Submit
