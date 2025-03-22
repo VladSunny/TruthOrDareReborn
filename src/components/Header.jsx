@@ -1,8 +1,35 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom';
+import supabase from '../supabase-client';
 
 function Header() {
   const location = useLocation();
+  const [session, setSession] = useState(null)
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [])
+
+  console.log(session?.user)
+
+  const signUp = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: 'google',
+    });
+  }
+
+  // if (!session) {
+  //   return (<Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />)
+  // }
 
   return (
     <>
@@ -24,19 +51,25 @@ function Header() {
             </div>
           </div>
         </div> */}
-
-        <div className="">
-          {location.pathname !== "/studio" && (
-            <Link to="/studio">
-              <button className="btn btn-md md:btn-xl btn-secondary">Studio</button>
-            </Link>
-          )}
-          {location.pathname !== "/" && (
-            <Link to="/">
-              <button className="btn btn-lg md:btn-xl btn-primary">Home</button>
-            </Link>
-          )}
-        </div>
+        {session && (
+          <div>
+            {location.pathname !== "/studio" && (
+              <Link to="/studio">
+                <button className="btn btn-md md:btn-xl btn-secondary">Studio</button>
+              </Link>
+            )}
+            {location.pathname !== "/" && (
+              <Link to="/">
+                <button className="btn btn-lg md:btn-xl btn-primary">Home</button>
+              </Link>
+            )}
+          </div>
+        )}
+        {!session && (
+          <button className="btn btn-md md:btn-xl btn-primary" onClick={signUp}>
+            Sign in
+          </button>
+        )}
       </div>
     </>
   )
