@@ -2,26 +2,33 @@ import { useState } from 'react';
 import supabase from '../supabase-client';
 
 function Studio() {
-  const [showAlert, setShowAlert] = useState(false);
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [ideaText, setIdeaText] = useState('');
   const [selectedOption, setSelectedOption] = useState('truth');
 
-  const handleSubmit = () => {
-    const formData = {
-      idea: ideaText,
-      type: selectedOption,
-      timestamp: new Date().toISOString()
+  const handleSubmit = async () => {
+    const idea = {
+      text: ideaText,
+      isDare: selectedOption === 'dare',
     };
 
-    console.log('Form Submission:', formData);
+    console.log('Form Submission:', idea);
 
-    showAlertMessage();
+    const {data, error} = await supabase.from('Ideas').insert([idea]).single();
+
+    if (error) {
+      console.error('Error inserting data:', error);
+    }
+    else {
+      openSuccessAlert();
+      setIdeaText('');
+    }
   };
 
-  const showAlertMessage = () => {
-    setShowAlert(true);
+  const openSuccessAlert = () => {
+    setShowSuccessAlert(true);
     setTimeout(() => {
-      setShowAlert(false);
+      setShowSuccessAlert(false);
     }, 3000);
   }
 
@@ -70,18 +77,35 @@ function Studio() {
 
           <button 
             className='btn btn-lg btn-success w-1/3 lg:w-1/5 mt-10 hover:btn-xl transition-all duration-500 subpixel-antialiased' 
-            onClick={handleSubmit}
+            onClick={() => {
+              if (ideaText) {
+                document.getElementById('my_modal_1').showModal();
+              }
+            }}
           >
             Submit
           </button>
         </div>
       </div>
 
+      <dialog id="my_modal_1" className="modal">
+        <div className="modal-box">
+          {/* <h3 className="font-bold text-lg">Hello!</h3> */}
+          <p className="py-4">Are you sure?</p>
+          <div className="modal-action">
+            <form method="dialog" className='flex flex-row space-x-3'>
+              <button className="btn">Close</button>
+              <button className="btn" onClick={handleSubmit}>Send</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+
       <div className='flex justify-center'>
         <div 
           role="alert" 
           className={`absolute top-1/5 md:top-1/3 alert alert-success alert-soft transition-opacity duration-500 ${
-            showAlert ? 'opacity-100' : 'opacity-0'
+            showSuccessAlert ? 'opacity-100' : 'opacity-0'
           }`}
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
