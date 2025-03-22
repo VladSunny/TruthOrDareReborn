@@ -34,9 +34,9 @@ function Header() {
   })
   }
 
-  const logOut = async () => {
-    await supabase.auth.signOut()
-  }
+  // const logOut = async () => {
+  //   await supabase.auth.signOut()
+  // }
 
   // if (!session) {
   //   return (<Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />)
@@ -71,7 +71,7 @@ function Header() {
             )}
             {location.pathname !== "/" && (
               <Link to="/">
-                <button className="btn btn-lg md:btn-xl btn-primary" onClick={logOut}>Home</button>
+                <button className="btn btn-lg md:btn-xl btn-primary">Home</button>
               </Link>
             )}
           </div>
