@@ -70,7 +70,7 @@ function Home() {
     <>
       <div className="flex justify-center items-center h-dvh flex-col">
         {session?.user && <p className="text-2xl md:text-3xl mb-5">Hello, {session?.user?.user_metadata?.full_name}</p>}
-        <div className="card bg-base-300 w-5/6 md:w-7/12 lg:w-3/7 h-1/2 shadow-2xl hover:shadow-primary transition-all duration-500">
+        <div className="card z-0 bg-base-300 w-5/6 md:w-7/12 lg:w-3/7 h-1/2 shadow-2xl hover:shadow-primary transition-all duration-500">
           <div className="card-body">
             <h2 className="card-title">
               <p className="text-center text-secondary text-3xl">
