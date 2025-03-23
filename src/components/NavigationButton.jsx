@@ -34,7 +34,7 @@ function NavigationButton() {
     <div className="dropdown z-10">
         <div tabIndex={0} role="button" className="btn btn-md btn-primary md:btn-xl m-1">Navigate</div>
         <ul tabIndex={0} className="dropdown-content menu bg-secondary-content py-3 rounded-box z-1 shadow-sm w-full h-30 md:h-40 flex flex-col justify-around items-center">
-        {location.pathname !== "/studio" && (
+        {location.pathname !== "/studio" && session && (
             <li>
                 <Link to="/studio">
                     <button className="btn btn-sm md:btn-md btn-secondary">Studio</button>
