@@ -7,35 +7,40 @@ function Home() {
   const [session, setSession] = useState(null)
   const [displayTask, setDisplayTask] = useState(""); // Текст с анимацией
 
-  const truths = [
-    "How are you?",
-    "Where are you?",
-    "What are you doing?",
-    "What is your name?",
-    "What is your age?",
-    "Where are you from?",
-  ];
+  async function getRandomIdea(is_dare) {
+    try {
+      const { data, error } = await supabase
+        .rpc('get_random_idea', { is_dare: is_dare });
+  
+      if (error) throw error;
+  
+      return data[0]['text'];
+    } catch (error) {
+      console.error('Ошибка при получении случайной идеи:', error);
+    }
+  }
 
-  const dares = [
-    "Sing for a minute",
-    "Dance for a minute",
-    "Run for a minute",
-    "Jump for a minute",
-    "Climb a tree for a minute",
-    "Cry for a minute",
-  ];
-
-  const updateTask = (nextCard) => {
+  const updateTask = async (nextCard) => {
     if (nextCard === "Random") {
       nextCard = Math.random() > 0.5 ? "Truth" : "Dare";
     }
 
     if (nextCard === "Truth") {
       setCurrentCard("Truth");
-      setCurrentTask(truths[Math.floor(Math.random() * truths.length)]);
+
+      let text = await getRandomIdea(false);
+      if (!text)
+        return;
+
+      setCurrentTask(text);
     } else if (nextCard === "Dare") {
       setCurrentCard("Dare");
-      setCurrentTask(dares[Math.floor(Math.random() * dares.length)]);
+
+      let text = await getRandomIdea(true);
+      if (!text)
+        return;
+
+      setCurrentTask(text);
     }
   };
 
@@ -78,9 +83,9 @@ function Home() {
               </p>
             </h2>
 
-            <p className="text-center typing-animation text-base">
-              {displayTask}
-            </p>
+            <article className="w-full h-full text-center typing-animation text-wrap">
+              <p>{displayTask}</p>
+            </article>
           </div>
         </div>
 

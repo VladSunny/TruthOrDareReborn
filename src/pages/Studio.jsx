@@ -12,12 +12,12 @@ function Studio() {
   const handleSubmit = async () => {
     const idea = {
       text: ideaText,
-      isDare: selectedOption === 'dare',
+      is_dare: selectedOption === 'dare',
     };
 
     console.log('Form Submission:', idea);
 
-    const { data, error } = await supabase.from('Ideas').insert([idea]).single();
+    const { data, error } = await supabase.from('ideas').insert([idea]).single();
 
     if (error) {
       console.error('Error inserting data:', error);
