@@ -10,7 +10,7 @@ function Home() {
   async function getRandomIdea(is_dare) {
     try {
       const { data, error } = await supabase
-        .rpc('get_random_idea', { is_dare: is_dare });
+        .rpc('get_random_idea', { is_dare_filter: is_dare });
   
       if (error) throw error;
   
@@ -83,9 +83,10 @@ function Home() {
               </p>
             </h2>
 
-            <article className="w-full h-full text-center typing-animation text-wrap">
+            <article className="w-full h-full text-center text-wrap typing-animation">
               <p>{displayTask}</p>
             </article>
+
           </div>
         </div>
 

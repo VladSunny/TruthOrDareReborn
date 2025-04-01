@@ -9,7 +9,6 @@ body {
 
 .typing-animation {
   font-family: monospace; /* Моноширинный шрифт для эффекта печатания */
-  white-space: nowrap; /* Текст не переносится на новую строку */
   overflow: hidden; /* Скрываем текст, который ещё не напечатан */
   display: inline-block; /* Чтобы курсор был рядом с текстом */
 }
