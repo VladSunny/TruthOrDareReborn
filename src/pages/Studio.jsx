@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import supabase from '../supabase-client';
-import NavigationButton from '../components/NavigationButton';
 
 function Studio() {
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);

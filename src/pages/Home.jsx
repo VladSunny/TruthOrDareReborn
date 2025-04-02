@@ -95,6 +95,18 @@ function Home() {
           <button className="btn btn-md md:btn-lg btn-soft btn-info" onClick={() => updateTask("Random")}>Next Random</button>
           <button className="btn btn-md md:btn-lg btn-soft btn-secondary" onClick={() => updateTask("Dare")}>Next Dare</button>
         </div>
+
+        <div className='flex flex-row space-x-5 justify-center items-center'>
+          <div className="rating pt-10">
+            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="1 star" />
+            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="2 star" defaultChecked />
+            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="3 star" />
+            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="4 star" />
+            <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="5 star" />
+          </div>
+
+          <button className='btn btn-md md:btn-lg bg-orange-400 mt-10'>Send rating</button>
+        </div>
       </div>
     </>
   );
