@@ -22,6 +22,9 @@ function NavigationButton() {
   const signUp = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
+      options: {
+        redirectTo: import.meta.VITE_REDIRECT_TO,
+      },
     })
   }
 
