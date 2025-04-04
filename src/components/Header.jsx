@@ -22,12 +22,14 @@ function Header() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 navbar bg-base-200 flex justify-around h-20 md:h-30">
-        <div className='flex flex-col justify-center h-full'>
-          <h1 className="font-bold text-primary text-3xl md:text-5xl xl:text-6xl">
-            Truth Or Dare
-          </h1>
-          {session?.user && <p className="text-xl md:text-2xl">Hello, {session?.user?.user_metadata?.full_name}</p>}
+      <div className="fixed top-0 left-0 w-screen">
+        <div className='navbar bg-base-200 flex  justify-center h-20 md:h-30 w-full'>
+          <div className='flex flex-col justify-center h-full'>
+            <h1 className="font-bold text-primary text-3xl md:text-5xl xl:text-6xl">
+              Truth Or Dare
+            </h1>
+            {session?.user && <p className="text-xl md:text-2xl">Hello, {session?.user?.user_metadata?.full_name}</p>}
+          </div>
         </div>
         <NavigationButton />
       </div>
