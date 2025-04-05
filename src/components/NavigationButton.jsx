@@ -34,34 +34,23 @@ function NavigationButton() {
 
   return (
     <>
-    <div className="dropdown z-10">
-        <div tabIndex={0} role="button" className="btn btn-md btn-primary md:btn-xl m-1">Navigate</div>
-        <ul tabIndex={0} className="dropdown-content menu bg-secondary-content py-3 rounded-box z-1 shadow-sm w-full h-30 md:h-40 flex flex-col justify-around items-center">
-        {location.pathname !== "/studio" && session && (
-            <li>
-                <Link to="/studio">
-                    <button className="btn btn-sm md:btn-md btn-secondary">Studio</button>
-                </Link>
-            </li>
-        )}
-        {location.pathname !== "/" && (
-            <li>
-                <Link to="/">
-                    <button className="btn btn-sm md:btn-md btn-secondary">Home</button>
-                </Link>
-            </li>
-        )}
-        {session ? (
-            <li>
-            <button onClick={logOut} className="btn btn-sm md:btn-md btn-secondary">Logout</button>
-            </li>
-        ) : (
-            <li>
-            <button onClick={signUp} className="btn btn-sm md:btn-md btn-secondary">Login</button>
-            </li>
-        )}
-        </ul>
-    </div>
+      <div className='navbar flex space-x-5'>
+          {location.pathname !== "/studio" && session && (
+            <Link to="/studio">
+                <button className="btn btn-sm md:btn-md btn-secondary">Studio</button>
+            </Link>
+          )}
+          {location.pathname !== "/" && (
+            <Link to="/">
+                <button className="btn btn-sm md:btn-md btn-secondary">Home</button>
+            </Link>
+          )}
+          {session ? (
+              <button onClick={logOut} className="btn btn-sm md:btn-md btn-secondary">Logout</button>
+          ) : (
+              <button onClick={signUp} className="btn btn-sm md:btn-md btn-secondary">Login</button>
+          )}
+      </div>
     </>
   )
 }
