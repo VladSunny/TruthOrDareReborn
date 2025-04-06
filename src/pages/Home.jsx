@@ -61,7 +61,7 @@ function Home() {
     <>
       <div className="flex items-center w-full h-full flex-col">
         {/* {session?.user && <p className="text-2xl md:text-3xl mb-5">Hello, {session?.user?.user_metadata?.full_name}</p>} */}
-        <div className="card bg-base-300 w-5/6 md:w-7/12 lg:w-3/7 mt-5 h-1/2 shadow-2xl hover:shadow-primary transition-all duration-500">
+        <div className="bg-base-300 w-5/6 md:w-7/12 lg:w-3/7 mt-5 h-1/2 shadow-2xl rounded-2xl md:rounded-3xl hover:shadow-primary transition-all duration-500">
           <div className="card-body">
             <h2 className="card-title">
               <p className="text-center text-secondary text-3xl">
