@@ -35,20 +35,25 @@ function NavigationButton() {
   return (
     <>
       <div className='navbar flex space-x-5'>
-          {location.pathname !== "/studio" && session && (
-            <Link to="/studio">
-                <button className="btn btn-sm md:btn-md btn-secondary">Studio</button>
-            </Link>
+          {session ? (
+              <button onClick={logOut} className="btn btn-sm md:btn-md btn-secondary">Logout</button>
+          ) : (
+              <button onClick={signUp} className="btn btn-sm md:btn-md btn-secondary">Login</button>
           )}
           {location.pathname !== "/" && (
             <Link to="/">
                 <button className="btn btn-sm md:btn-md btn-secondary">Home</button>
             </Link>
           )}
-          {session ? (
-              <button onClick={logOut} className="btn btn-sm md:btn-md btn-secondary">Logout</button>
-          ) : (
-              <button onClick={signUp} className="btn btn-sm md:btn-md btn-secondary">Login</button>
+          {location.pathname !== "/studio" && session && (
+            <Link to="/studio">
+                <button className="btn btn-sm md:btn-md btn-secondary">Studio</button>
+            </Link>
+          )}
+          {location.pathname !== "/created-ideas" && session && (
+            <Link to="/created-ideas">
+                <button className="btn btn-sm md:btn-md btn-secondary">Created Ideas</button>
+            </Link>
           )}
       </div>
     </>

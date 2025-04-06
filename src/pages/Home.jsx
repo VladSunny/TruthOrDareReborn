@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import supabase from '../supabase-client';
-import NavigationButton from '../components/NavigationButton';
 
 function Home() {
   const [currentCard, setCurrentCard] = useState("Choose");
   const [currentTask, setCurrentTask] = useState("");
-  const [session, setSession] = useState(null)
   const [displayTask, setDisplayTask] = useState(""); // Текст с анимацией
 
   async function getRandomIdea(is_dare) {
@@ -58,19 +56,6 @@ function Home() {
 
     return () => clearInterval(interval);
   }, [currentTask]);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-    })
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-
-    return () => subscription.unsubscribe()
-  }, [])
 
   return (
     <>

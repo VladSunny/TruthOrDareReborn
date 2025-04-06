@@ -22,7 +22,7 @@ function Header() {
 
   return (
     <>
-      <div className="z-0 top-0 left-0 w-screen sticky">
+      <div className="z-0 top-0 w-full sticky">
         <div className='navbar bg-base-200 flex justify-center h-20 md:h-30 w-full'>
           <div className='flex flex-col justify-center h-full'>
             <h1 className="font-bold text-primary text-3xl md:text-5xl xl:text-6xl">

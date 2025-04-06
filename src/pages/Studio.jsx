@@ -54,68 +54,67 @@ function Studio() {
     return () => subscription.unsubscribe()
   }, [])
 
+  if (!session) {
+    return (
+      <p className="text-2xl md:text-3xl xl:text-4xl text-error font-bold p-4">You are not logged in!</p>
+    )
+  }
+
   return (
     <>
       <div className="flex items-center h-full w-full flex-col">
         <h1 className="text-3xl md:text-6xl xl:text-8xl font-bold text-secondary bg-base-200 p-4 rounded-box">
           Studio
         </h1>
-        
-        {session ? (
-            <div className="flex flex-col items-center justify-around w-screen">
-            {/* {session && (
-              <img src={session.user.user_metadata.avatar_url} alt="Avatar" className="rounded-full w-20 h-20 md:w-30 md:h-30" />
-            )} */}
-  
-            <fieldset className="fieldset bg-base-200 border border-base-300 p-4 rounded-box w-3/4 shadow-2xl hover:shadow-secondary transition-all duration-500 md:w-4/7 lg:w-3/7">
-              <legend className="fieldset-legend text-xl md:text-3xl text-primary">Your Idea</legend>
-              
-              <textarea
-                className="textarea h-30 max-h-50 w-full md:text-2xl text-accent-content"
-                placeholder="Idea"
-                value={ideaText}
-                onChange={(e) => setIdeaText(e.target.value)}
+
+        <div className="flex flex-col items-center justify-around w-screen">
+
+        <fieldset className="fieldset bg-base-200 border border-base-300 p-4 rounded-box w-3/4 shadow-2xl hover:shadow-secondary transition-all duration-500 md:w-4/7 lg:w-3/7">
+          <legend className="fieldset-legend text-xl md:text-3xl text-primary">Your Idea</legend>
+          
+          <textarea
+            className="textarea h-30 max-h-50 w-full md:text-2xl text-accent-content"
+            placeholder="Idea"
+            value={ideaText}
+            onChange={(e) => setIdeaText(e.target.value)}
+          />
+          
+          <div className="flex flex-col space-y-3 mt-5">
+            <div className="flex flex-row space-x-3 items-center">
+              <input
+                type="radio"
+                name="radio-4"
+                className="radio radio-primary"
+                checked={selectedOption === 'truth'}
+                onChange={() => setSelectedOption('truth')}
               />
-              
-              <div className="flex flex-col space-y-3 mt-5">
-                <div className="flex flex-row space-x-3 items-center">
-                  <input
-                    type="radio"
-                    name="radio-4"
-                    className="radio radio-primary"
-                    checked={selectedOption === 'truth'}
-                    onChange={() => setSelectedOption('truth')}
-                  />
-                  <p className="text-xl md:text-2xl text-primary">Truth</p>
-                </div>
-  
-                <div className="flex flex-row space-x-3 items-center">
-                  <input
-                    type="radio"
-                    name="radio-4"
-                    className="radio radio-secondary"
-                    checked={selectedOption === 'dare'}
-                    onChange={() => setSelectedOption('dare')}
-                  />
-                  <p className="text-xl md:text-2xl text-secondary">Dare</p>
-                </div>
-              </div>
-            </fieldset>
-  
-            <button
-              className="btn btn-lg btn-success w-1/3 lg:w-1/5 mt-10 hover:btn-xl transition-all duration-500 subpixel-antialiased"
-              onClick={() => {
-                if (ideaText) {
-                  document.getElementById('my_modal_1').showModal();
-                }
-              }}
-            >
-              Submit
-            </button>
+              <p className="text-xl md:text-2xl text-primary">Truth</p>
+            </div>
+
+            <div className="flex flex-row space-x-3 items-center">
+              <input
+                type="radio"
+                name="radio-4"
+                className="radio radio-secondary"
+                checked={selectedOption === 'dare'}
+                onChange={() => setSelectedOption('dare')}
+              />
+              <p className="text-xl md:text-2xl text-secondary">Dare</p>
+            </div>
           </div>
-        ) : (
-          <p className="text-2xl md:text-3xl xl:text-4xl text-error font-bold p-4">You are not logged in!</p>
-        )}
+        </fieldset>
+
+        <button
+          className="btn btn-lg btn-success w-1/3 lg:w-1/5 mt-10 hover:btn-xl transition-all duration-500 subpixel-antialiased"
+          onClick={() => {
+            if (ideaText) {
+              document.getElementById('my_modal_1').showModal();
+            }
+          }}
+        >
+          Submit
+        </button>
+      </div>
         
         
       </div>
